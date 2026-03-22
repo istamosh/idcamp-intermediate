@@ -1,8 +1,24 @@
 # Jenius Sentiment Analysis
 
-This project now uses a CSV-first workflow for review data.
+Sentiment classifier (positive / neutral / negative) trained on Google Play reviews for the Jenius banking app. Uses classic ML (Logistic Regression, Naive Bayes, SVM, Random Forest) with TF-IDF / BoW features.
 
-1. Generate the reusable review cache once with `python scripts/scrape_jenius_reviews.py`.
-2. Open `jenius_sentiment_analysis.ipynb` and run the notebook.
+## How to run
 
-The scraper creates `data/jenius_reviews.csv` only when the file is missing. The notebook does not call the Google Play API; it stops immediately if the CSV is not present.
+Scrape reviews first (only needed once, skips if CSV already exists):
+
+```bash
+python scripts/scrape_jenius_reviews.py
+```
+
+Then open and run `jenius_sentiment_analysis.ipynb` top to bottom.
+
+## Structure
+
+```
+data/
+  jenius_reviews.csv        # scraped reviews cache
+  experiments/              # train/test/prediction CSVs per experiment
+scripts/
+  scrape_jenius_reviews.py  # scraper
+jenius_sentiment_analysis.ipynb
+```
